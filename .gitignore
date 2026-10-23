@@ -1,0 +1,8 @@
+# 저장소에는 CodeCoach 화면 설계서만 올린다. 그 밖의 로컬 파일(이전 ScreenSpec 하네스 등)은 제외.
+/*
+!/.gitignore
+!/vercel.json
+!/index.html
+!/summary.html
+!/CodeCoach-화면설계-요약.pdf
+!/design/
