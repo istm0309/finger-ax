@@ -1,165 +1,52 @@
 <!doctype html>
-<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CodeCoach 화면 설계서</title><style>
-:root{--ink:#1b2333;--sub:#5b6577;--line:#e3e7ee;--bg:#fff;--head:#f5f7fa;--brand:#3b5bdb;--red:#e5484d}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--ink:#e6e9ef;--sub:#a3acbd;--line:#2d3442;--bg:#141821;--head:#1c212c;--brand:#8aa2ff}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 "Malgun Gothic","Segoe UI",sans-serif}
-main{max-width:1200px;margin:0 auto;padding:32px 16px 80px}a{color:var(--brand)}
-nav.toc{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 16px;display:flex;gap:14px;flex-wrap:wrap;font-size:14px}
-h1{font-size:30px;margin:8px 0 6px}h2{font-size:22px;margin:48px 0 14px;padding-top:14px;border-top:2px solid var(--ink)}h3{font-size:17px;margin:22px 0 8px}
-.lead{color:var(--sub);margin:0 0 20px}
-table{width:100%;border-collapse:collapse;margin:8px 0}th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}th{background:var(--head);white-space:nowrap}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
-.card{border:1px solid var(--line);border-radius:10px;overflow:hidden;text-decoration:none;color:inherit;background:var(--head)}
-.card img{width:100%;display:block;border-bottom:1px solid var(--line)}.card div{padding:10px 12px}.card b{color:var(--red);margin-right:6px}
-.shot{width:100%;border:1px solid var(--line);border-radius:8px;display:block}
-.no{display:inline-block;width:22px;height:22px;border-radius:50%;background:var(--red);color:#fff;text-align:center;font:700 12px/22px "Segoe UI",sans-serif}
-.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.flow span{border:1px solid var(--line);background:var(--head);border-radius:8px;padding:6px 12px}.flow i{color:var(--sub);font-style:normal}
-code{font-size:13px}
-@media (max-width:700px){h1{font-size:24px}th,td{padding:6px}table{display:block;overflow-x:auto}.grid{grid-template-columns:1fr}}
-</style></head>
-<body>
-<nav class="toc"><a href="#cover">표지</a><a href="#list">화면 목록</a><a href="#flow">화면 흐름</a><a href="#SCR-01">SCR-01</a><a href="#SCR-02">SCR-02</a><a href="#SCR-03">SCR-03</a><a href="#SCR-04">SCR-04</a><a href="#SCR-05">SCR-05</a><a href="#SCR-06">SCR-06</a><a href="#SCR-07">SCR-07</a><a href="summary.html"><b>핵심 요약</b></a></nav>
-<main>
-<section id="cover">
-<h1>CodeCoach 화면 설계서</h1>
-<p class="lead">개발자가 코드를 올리면 단위 테스트, 보완점, 다른 코드와의 비교, 현재 코드의 단점을 분석하고 고치는 방법까지 코칭해 주는 웹페이지</p>
-<p><a href="summary.html" style="display:inline-block;background:var(--brand);color:#fff;text-decoration:none;padding:10px 18px;border-radius:8px;font-weight:700">이미지로 보는 핵심 요약</a></p>
-
-<table>
-<tr><th>서비스명</th><td>CodeCoach</td><th>문서 버전</th><td>v0.1</td></tr>
-<tr><th>작성일</th><td>2026-10-23</td><th>작성자</th><td>인태</td></tr>
-<tr><th>목적</th><td colspan="3">내가 짠 코드가 제대로 동작하는지, 무엇을 보완해야 하는지, 다른 코드를 쓰면 무엇이 좋은지, 지금 코드의 단점은 무엇인지를 한 번에 확인하고 개선까지 이어지게 한다.</td></tr>
-<tr><th>대상 사용자</th><td colspan="3">코드 리뷰를 받기 어려운 주니어·교육생 개발자, 자기 코드를 점검하려는 개발자</td></tr>
-</table>
-</section>
-<h2 id="list">화면 목록 (7)</h2>
-<div class="grid"><a class="card" href="#SCR-01"><img src="design/images/SCR-01.png" alt="SCR-01 미리보기" loading="lazy"><div><b>SCR-01</b>코드 제출</div></a><a class="card" href="#SCR-02"><img src="design/images/SCR-02.png" alt="SCR-02 미리보기" loading="lazy"><div><b>SCR-02</b>분석 진행</div></a><a class="card" href="#SCR-03"><img src="design/images/SCR-03.png" alt="SCR-03 미리보기" loading="lazy"><div><b>SCR-03</b>분석 결과 요약</div></a><a class="card" href="#SCR-04"><img src="design/images/SCR-04.png" alt="SCR-04 미리보기" loading="lazy"><div><b>SCR-04</b>단위 테스트 결과</div></a><a class="card" href="#SCR-05"><img src="design/images/SCR-05.png" alt="SCR-05 미리보기" loading="lazy"><div><b>SCR-05</b>보완점·단점</div></a><a class="card" href="#SCR-06"><img src="design/images/SCR-06.png" alt="SCR-06 미리보기" loading="lazy"><div><b>SCR-06</b>대안 비교</div></a><a class="card" href="#SCR-07"><img src="design/images/SCR-07.png" alt="SCR-07 미리보기" loading="lazy"><div><b>SCR-07</b>코칭</div></a></div>
-<table><tr><th>화면 ID</th><th>화면명</th><th>메뉴 경로</th><th>화면 목적</th></tr>
-<tr><td><a href="#SCR-01">SCR-01</a></td><td>코드 제출</td><td>새 분석</td><td>분석할 코드와 요구사항 문서를 올리고, 받고 싶은 분석 항목과 깊이를 골라 분석을 시작한다.</td></tr>
-<tr><td><a href="#SCR-02">SCR-02</a></td><td>분석 진행</td><td>새 분석 &gt; 진행</td><td>다섯 가지 분석이 어디까지 진행됐는지와 실시간 로그를 보여 주어 기다리는 동안 상황을 알 수 있게 한다.</td></tr>
-<tr><td><a href="#SCR-03">SCR-03</a></td><td>분석 결과 요약</td><td>분석 기록 &gt; 결과 &gt; 요약</td><td>분석 결과를 점수와 숫자로 요약하고, 가장 먼저 고칠 세 가지를 알려 준다.</td></tr>
-<tr><td><a href="#SCR-04">SCR-04</a></td><td>단위 테스트 결과</td><td>분석 기록 &gt; 결과 &gt; 단위 테스트</td><td>AI가 작성·실행한 단위 테스트 결과를 보여 주고, 실패한 테스트의 기대값과 실제값, 원인을 설명한다.</td></tr>
-<tr><td><a href="#SCR-05">SCR-05</a></td><td>보완점·단점</td><td>분석 기록 &gt; 결과 &gt; 보완점·단점</td><td>요구사항 대비 빠진 것(보완점)과 지금 코드의 약점(단점)을 심각도 순으로 보여 주고, 문제 상황과 고친 예시를 설명한다.</td></tr>
-<tr><td><a href="#SCR-06">SCR-06</a></td><td>대안 비교</td><td>분석 기록 &gt; 결과 &gt; 대안 비교</td><td>지금 코드가 쓴 방법과 다른 라이브러리·방식을 기능적 장점, 비용, 근거로 비교하고 교체·부분 도입·유지를 권한다.</td></tr>
-<tr><td><a href="#SCR-07">SCR-07</a></td><td>코칭</td><td>분석 기록 &gt; 결과 &gt; 코칭</td><td>고르거나 추천된 개선 항목을 체크리스트로 관리하고, AI 코치와 대화하며 고친 뒤 다시 분석한다.</td></tr></table>
-<h2 id="flow">화면 흐름</h2>
-<div class="flow"><span>SCR-01 코드 제출</span><i>→</i><span>SCR-02 분석 진행</span><i>→</i><span>SCR-03 결과 요약</span><i>→</i><span>SCR-04 단위 테스트 · SCR-05 보완점·단점 · SCR-06 대안 비교</span><i>→</i><span>SCR-07 코칭</span><i>→</i><span>고친 코드로 다시 분석(SCR-01)</span></div>
-<p class="lead" style="margin-top:10px">결과 화면(SCR-03~07)은 상단 탭으로 자유롭게 오가며, 코칭 화면에서 고친 코드를 다시 분석하면 처음 화면으로 돌아가 새 결과와 비교합니다.</p>
-
-<h2 id="SCR-01">SCR-01 코드 제출</h2>
-<table>
-<tr><th>화면 ID</th><td>SCR-01</td><th>메뉴 경로</th><td>새 분석</td></tr>
-<tr><th>화면 목적</th><td colspan="3">분석할 코드와 요구사항 문서를 올리고, 받고 싶은 분석 항목과 깊이를 골라 분석을 시작한다.</td></tr>
-<tr><th>진입 경로</th><td>상단 메뉴 "새 분석", SCR-07 "고친 코드로 다시 분석"</td><th>이동 화면</th><td>SCR-02 분석 진행</td></tr>
-</table>
-<img class="shot" src="design/images/SCR-01.png" alt="SCR-01 코드 제출 화면 목업" loading="lazy">
-<h3>Description</h3>
-<table><tr><th>No</th><th>요소</th><th>유형</th><th>기능 설명</th></tr>
-<tr><td><span class="no">1</span></td><td>입력 방식 선택</td><td>탭</td><td>코드 붙여넣기, 파일 업로드(zip·폴더), GitHub 저장소 주소 중 하나를 고른다.</td></tr>
-<tr><td><span class="no">2</span></td><td>코드 입력 영역</td><td>코드 편집기</td><td>선택한 방식으로 올린 코드를 문법 강조와 함께 보여 준다. 붙여넣기 방식에서는 직접 편집할 수 있다.</td></tr>
-<tr><td><span class="no">3</span></td><td>언어 · 요구사항 문서</td><td>셀렉트 · 파일 첨부(선택)</td><td>언어는 자동 감지 후 바꿀 수 있다. PRD 같은 요구사항 문서를 첨부하면 보완점 분석의 기준이 된다.</td></tr>
-<tr><td><span class="no">4</span></td><td>분석 항목</td><td>체크박스</td><td>단위 테스트, 보완점, 대안 비교, 단점 분석, 개선 코드 제안 중 받을 항목을 고른다. 기본은 앞의 네 개.</td></tr>
-<tr><td><span class="no">5</span></td><td>분석 깊이</td><td>단일 선택</td><td>빠르게·보통·꼼꼼하게. 깊을수록 검토하는 대안과 테스트 수가 늘고 시간이 길어진다.</td></tr>
-<tr><td><span class="no">6</span></td><td>분석 시작</td><td>버튼(주요)</td><td>코드가 비어 있으면 비활성. 누르면 SCR-02로 이동한다. 아래에 코드 보관 기간 안내를 표시한다.</td></tr>
-</table>
-<h3>처리 규칙</h3><ul><li>파일은 최대 50개, 합계 5MB까지 받는다.</li><li>비밀 키 패턴(API 키, 토큰)이 보이면 분석 전에 가림 처리를 권하는 경고를 띄운다.</li></ul>
-
-<h2 id="SCR-02">SCR-02 분석 진행</h2>
-<table>
-<tr><th>화면 ID</th><td>SCR-02</td><th>메뉴 경로</th><td>새 분석 &gt; 진행</td></tr>
-<tr><th>화면 목적</th><td colspan="3">다섯 가지 분석이 어디까지 진행됐는지와 실시간 로그를 보여 주어 기다리는 동안 상황을 알 수 있게 한다.</td></tr>
-<tr><th>진입 경로</th><td>SCR-01 분석 시작</td><th>이동 화면</th><td>SCR-03 결과 요약(완료 시 자동 이동)</td></tr>
-</table>
-<img class="shot" src="design/images/SCR-02.png" alt="SCR-02 분석 진행 화면 목업" loading="lazy">
-<h3>Description</h3>
-<table><tr><th>No</th><th>요소</th><th>유형</th><th>기능 설명</th></tr>
-<tr><td><span class="no">1</span></td><td>전체 진행률</td><td>진행 막대</td><td>전체 진행률(%)과 분석 대상 파일 수, 언어를 보여 준다.</td></tr>
-<tr><td><span class="no">2</span></td><td>단계 카드 5개</td><td>상태 카드</td><td>코드 이해 → 단위 테스트 → 보완점 → 대안 비교 → 단점 분석. 각 카드는 대기·진행 중·완료·실패 상태와 한 줄 요약을 보여 준다. 보완점·대안 비교는 동시에 진행된다.</td></tr>
-<tr><td><span class="no">3</span></td><td>실시간 로그</td><td>로그 목록</td><td>테스트 통과 수, 실패 항목, 검토 중인 라이브러리처럼 사람이 읽을 수 있는 진행 기록을 시간순으로 보여 준다.</td></tr>
-<tr><td><span class="no">4</span></td><td>취소 · 완료 알림</td><td>버튼</td><td>분석 취소(확인 창 후 중단), 완료되면 브라우저·메일 알림 받기.</td></tr>
-</table>
-<h3>처리 규칙</h3><ul><li>한 단계가 실패해도 나머지 단계는 계속하고, 결과 화면에 빠진 항목을 표시한다.</li></ul>
-
-<h2 id="SCR-03">SCR-03 분석 결과 요약</h2>
-<table>
-<tr><th>화면 ID</th><td>SCR-03</td><th>메뉴 경로</th><td>분석 기록 &gt; 결과 &gt; 요약</td></tr>
-<tr><th>화면 목적</th><td colspan="3">분석 결과를 점수와 숫자로 요약하고, 가장 먼저 고칠 세 가지를 알려 준다.</td></tr>
-<tr><th>진입 경로</th><td>SCR-02 완료, 분석 기록 목록</td><th>이동 화면</th><td>SCR-04~07(탭), PDF 보고서</td></tr>
-</table>
-<img class="shot" src="design/images/SCR-03.png" alt="SCR-03 분석 결과 요약 화면 목업" loading="lazy">
-<h3>Description</h3>
-<table><tr><th>No</th><th>요소</th><th>유형</th><th>기능 설명</th></tr>
-<tr><td><span class="no">1</span></td><td>결과 탭</td><td>탭</td><td>요약, 단위 테스트, 보완점·단점, 대안 비교, 코칭 화면을 오간다.</td></tr>
-<tr><td><span class="no">2</span></td><td>핵심 지표 4개</td><td>지표 카드</td><td>종합 점수(100점), 테스트 통과(통과/전체), 보완점 수, 심각한 단점(high) 수. 카드를 누르면 해당 탭으로 이동한다.</td></tr>
-<tr><td><span class="no">3</span></td><td>먼저 고칠 3가지</td><td>표</td><td>안전·보안 high → 테스트 실패 → 핵심 보완점 순으로 고른 세 항목. 행을 누르면 상세로 이동한다.</td></tr>
-<tr><td><span class="no">4</span></td><td>영역별 점수</td><td>막대 그래프</td><td>정확성, 안정성, 보안, 유지보수성 점수.</td></tr>
-<tr><td><span class="no">5</span></td><td>코칭 받으러 가기</td><td>버튼(주요)</td><td>SCR-07 코칭으로 이동한다.</td></tr>
-<tr><td><span class="no">6</span></td><td>PDF 보고서 받기</td><td>버튼</td><td>요약과 모든 지적을 PDF로 내려받는다.</td></tr>
-</table>
-
-
-<h2 id="SCR-04">SCR-04 단위 테스트 결과</h2>
-<table>
-<tr><th>화면 ID</th><td>SCR-04</td><th>메뉴 경로</th><td>분석 기록 &gt; 결과 &gt; 단위 테스트</td></tr>
-<tr><th>화면 목적</th><td colspan="3">AI가 작성·실행한 단위 테스트 결과를 보여 주고, 실패한 테스트의 기대값과 실제값, 원인을 설명한다.</td></tr>
-<tr><th>진입 경로</th><td>SCR-03 탭·지표 카드</td><th>이동 화면</th><td>SCR-07 코칭(고치는 방법 보기)</td></tr>
-</table>
-<img class="shot" src="design/images/SCR-04.png" alt="SCR-04 단위 테스트 결과 화면 목업" loading="lazy">
-<h3>Description</h3>
-<table><tr><th>No</th><th>요소</th><th>유형</th><th>기능 설명</th></tr>
-<tr><td><span class="no">1</span></td><td>테스트 목록</td><td>필터 + 표</td><td>전체·통과·실패로 거른다. 테스트마다 연결된 요구사항 ID와 결과를 보여 준다.</td></tr>
-<tr><td><span class="no">2</span></td><td>실패 상세</td><td>비교 패널</td><td>선택한 실패 테스트의 기대값과 실제값을 나란히, 테스트 코드와 함께 보여 준다.</td></tr>
-<tr><td><span class="no">3</span></td><td>원인 판정</td><td>배지</td><td>코드 결함 / 테스트 결함 / 환경 문제 중 하나와 판단 근거. 코드 결함만 개선 목록 후보가 된다.</td></tr>
-<tr><td><span class="no">4</span></td><td>고치는 방법 · 재실행 · 내려받기</td><td>버튼</td><td>고치는 방법 보기(SCR-07로 이동), 테스트 다시 실행, 테스트 코드 내려받기(내 프로젝트에 넣어 쓰기).</td></tr>
-</table>
-
-
-<h2 id="SCR-05">SCR-05 보완점·단점</h2>
-<table>
-<tr><th>화면 ID</th><td>SCR-05</td><th>메뉴 경로</th><td>분석 기록 &gt; 결과 &gt; 보완점·단점</td></tr>
-<tr><th>화면 목적</th><td colspan="3">요구사항 대비 빠진 것(보완점)과 지금 코드의 약점(단점)을 심각도 순으로 보여 주고, 문제 상황과 고친 예시를 설명한다.</td></tr>
-<tr><th>진입 경로</th><td>SCR-03 탭·먼저 고칠 3가지</td><th>이동 화면</th><td>SCR-07 코칭(개선 목록에 담기)</td></tr>
-</table>
-<img class="shot" src="design/images/SCR-05.png" alt="SCR-05 보완점·단점 화면 목업" loading="lazy">
-<h3>Description</h3>
-<table><tr><th>No</th><th>요소</th><th>유형</th><th>기능 설명</th></tr>
-<tr><td><span class="no">1</span></td><td>분류 · 심각도 필터</td><td>칩 + 셀렉트</td><td>전체, 보완점(요구사항 대비 빠진 것), 단점(있는 코드의 약점)으로 나누고 high·medium·low로 거른다.</td></tr>
-<tr><td><span class="no">2</span></td><td>지적 목록</td><td>표</td><td>심각도, 분류, 한 줄 내용, 파일:줄 위치. 보완점 중 코드가 없는 것은 "해당 코드 없음"으로 표시한다.</td></tr>
-<tr><td><span class="no">3</span></td><td>상세 설명</td><td>설명 패널</td><td>무엇이 문제인지, 어떤 상황에서 실패하는지, 고친 예시 코드(diff)를 보여 준다.</td></tr>
-<tr><td><span class="no">4</span></td><td>개선 목록에 담기 · 이의 제기</td><td>버튼</td><td>개선 목록(SCR-07)에 추가하거나, 지적이 틀렸다고 표시해 다음 분석에 반영한다.</td></tr>
-</table>
-
-
-<h2 id="SCR-06">SCR-06 대안 비교</h2>
-<table>
-<tr><th>화면 ID</th><td>SCR-06</td><th>메뉴 경로</th><td>분석 기록 &gt; 결과 &gt; 대안 비교</td></tr>
-<tr><th>화면 목적</th><td colspan="3">지금 코드가 쓴 방법과 다른 라이브러리·방식을 기능적 장점, 비용, 근거로 비교하고 교체·부분 도입·유지를 권한다.</td></tr>
-<tr><th>진입 경로</th><td>SCR-03 탭</td><th>이동 화면</th><td>SCR-07 코칭</td></tr>
-</table>
-<img class="shot" src="design/images/SCR-06.png" alt="SCR-06 대안 비교 화면 목업" loading="lazy">
-<h3>Description</h3>
-<table><tr><th>No</th><th>요소</th><th>유형</th><th>기능 설명</th></tr>
-<tr><td><span class="no">1</span></td><td>비교 주제</td><td>칩</td><td>크롤링 방식, 요소 추출, 렌더링처럼 코드에서 찾은 기술 선택별로 비교를 고른다.</td></tr>
-<tr><td><span class="no">2</span></td><td>비교표</td><td>표</td><td>기능적 장점, 관련 요구사항, 바꾸는 비용, 근거 수준(공식 문서·실험·미확인)을 현재와 대안으로 나란히 보여 준다.</td></tr>
-<tr><td><span class="no">3</span></td><td>실험 결과</td><td>막대 그래프</td><td>같은 조건에서 돌려 본 소요 시간, 지원 기능 차이처럼 측정한 값을 보여 준다. 실험하지 않았으면 숨긴다.</td></tr>
-<tr><td><span class="no">4</span></td><td>코치의 권고</td><td>강조 패널</td><td>교체 / 부분 도입 / 유지 중 하나와 한 문장 이유.</td></tr>
-</table>
-
-
-<h2 id="SCR-07">SCR-07 코칭</h2>
-<table>
-<tr><th>화면 ID</th><td>SCR-07</td><th>메뉴 경로</th><td>분석 기록 &gt; 결과 &gt; 코칭</td></tr>
-<tr><th>화면 목적</th><td colspan="3">고르거나 추천된 개선 항목을 체크리스트로 관리하고, AI 코치와 대화하며 고친 뒤 다시 분석한다.</td></tr>
-<tr><th>진입 경로</th><td>SCR-03~06</td><th>이동 화면</th><td>SCR-01 다시 분석</td></tr>
-</table>
-<img class="shot" src="design/images/SCR-07.png" alt="SCR-07 코칭 화면 목업" loading="lazy">
-<h3>Description</h3>
-<table><tr><th>No</th><th>요소</th><th>유형</th><th>기능 설명</th></tr>
-<tr><td><span class="no">1</span></td><td>나의 개선 목록</td><td>체크리스트</td><td>담은 항목과 추천 항목을 우선순위대로 보여 준다. 체크하면 반영 완료로 바뀌고 진행률이 오른다.</td></tr>
-<tr><td><span class="no">2</span></td><td>AI 코치 대화</td><td>채팅</td><td>선택한 항목을 맥락으로 질문에 답하고, 넣을 위치와 코드 조각을 함께 보여 준다.</td></tr>
-<tr><td><span class="no">3</span></td><td>추천 질문</td><td>칩</td><td>"왜 문제인가요?", "테스트도 보여 주세요", "다른 방법은?" 같은 질문을 한 번에 보낸다.</td></tr>
-<tr><td><span class="no">4</span></td><td>고친 코드로 다시 분석</td><td>버튼(주요)</td><td>SCR-01로 이동해 이전 분석과 비교한 결과를 만든다.</td></tr>
-</table>
-
-</main></body></html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CodeCoach · 코드 제출</title>
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body data-page="submit">
+<main class="wrap">
+  <div class="row">
+    <section class="panel col" style="flex:1.6">
+      <div><h1>코드를 올리면 AI 코치가 분석해 드려요</h1><div class="muted">단위 테스트 · 보완점 · 대안 비교 · 단점 분석을 한 번에</div></div>
+      <div id="modes" style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="chip on" data-mode="paste">코드 붙여넣기</button>
+        <button class="chip" data-mode="file">파일 업로드</button>
+        <button class="chip" data-mode="git">GitHub 저장소</button>
+        <button class="chip" id="sample" style="margin-left:auto">예시 코드 넣기</button>
+      </div>
+      <div id="pane-paste"><textarea id="code" class="code" spellcheck="false" aria-label="분석할 코드"></textarea></div>
+      <div id="pane-file" hidden class="panel" style="text-align:center;padding:40px">
+        <p class="muted">zip 또는 소스 파일을 고르세요 (최대 50개, 5MB)</p>
+        <input type="file" id="file" multiple>
+        <p id="filelist" class="muted small">선택된 파일 없음</p>
+      </div>
+      <div id="pane-git" hidden><input type="url" id="repo" placeholder="https://github.com/사용자/저장소"></div>
+      <div class="row" style="gap:12px">
+        <select aria-label="언어" style="flex:1"><option>TypeScript</option><option>JavaScript</option><option>Python</option><option>Java</option></select>
+        <label class="field" style="flex:2;cursor:pointer"><span class="muted small">요구사항 문서(PRD) 첨부 · 선택</span><br><input type="file" style="max-width:100%"></label>
+      </div>
+    </section>
+    <aside class="panel col" style="flex:1">
+      <h2 style="margin:0">분석 항목</h2>
+      <div>
+        <label class="check"><input type="checkbox" name="item" value="test" checked>단위 테스트 작성·실행</label>
+        <label class="check"><input type="checkbox" name="item" value="gap" checked>보완점 찾기 (요구사항 대비)</label>
+        <label class="check"><input type="checkbox" name="item" value="alt" checked>다른 코드·라이브러리와 비교</label>
+        <label class="check"><input type="checkbox" name="item" value="weak" checked>현재 코드 단점 분석</label>
+        <label class="check"><input type="checkbox" name="item" value="fix">개선 코드 자동 제안</label>
+      </div>
+      <div><div class="muted">분석 깊이</div>
+        <div id="depth" style="display:flex;gap:8px;margin-top:6px"><button class="chip">빠르게</button><button class="chip on">보통</button><button class="chip">꼼꼼하게</button></div></div>
+      <div style="margin-top:auto">
+        <button class="btn lg" id="start">분석 시작</button>
+        <div id="hint" class="small" style="color:var(--red);min-height:20px;margin-top:6px"></div>
+        <div class="muted small">코드는 분석에만 쓰이고 저장 기간 후 삭제됩니다 · 이 사이트는 샘플 데이터로 동작하는 프로토타입입니다</div>
+      </div>
+    </aside>
+  </div>
+</main>
+<script src="assets/app.js"></script>
+</body>
+</html>

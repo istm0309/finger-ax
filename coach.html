@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CodeCoach · 코칭</title>
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body data-page="coach">
+<main class="wrap">
+  <div id="tabs"></div>
+  <div class="row">
+    <section class="panel" style="flex:1">
+      <h2>나의 개선 목록</h2>
+      <div id="todo"></div>
+      <div style="margin-top:14px"><span id="prog"></span><div class="bar"><i id="pbar"></i></div></div>
+      <a class="btn lg" style="margin-top:16px" href="index.html">고친 코드로 다시 분석</a>
+      <button class="chip" id="reset" style="margin-top:10px">목록 처음 상태로</button>
+    </section>
+    <section class="panel col" style="flex:1.5">
+      <h2 style="margin:0">AI 코치와 대화</h2>
+      <div class="chat" id="chat"></div>
+      <div id="suggest" style="display:flex;gap:8px;flex-wrap:wrap"><button class="chip">왜 이게 문제인가요?</button><button class="chip">테스트도 보여 주세요</button><button class="chip">다른 방법은?</button><button class="chip">쿼리 파라미터 정렬은 어디에 넣나요?</button></div>
+      <div style="display:flex;gap:8px"><input type="text" id="q" placeholder="코치에게 질문하기…"><button class="btn" id="send">보내기</button></div>
+    </section>
+  </div>
+</main>
+<script src="assets/app.js"></script>
+</body>
+</html>

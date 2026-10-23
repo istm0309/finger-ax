@@ -3,6 +3,5 @@
   "installCommand": "echo skip install",
   "buildCommand": "echo static site",
   "outputDirectory": ".",
-  "cleanUrls": true,
-  "rewrites": [{ "source": "/", "destination": "/index.html" }]
+  "cleanUrls": true
 }

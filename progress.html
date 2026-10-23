@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CodeCoach · 분석 진행</title>
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body data-page="progress">
+<main class="wrap col">
+  <section class="panel">
+    <div style="display:flex;justify-content:space-between;align-items:center"><div><h1>분석 중입니다</h1><div class="muted" id="file"></div></div><div id="pct" style="font-size:30px;font-weight:800;color:var(--brand)">0%</div></div>
+    <div class="bar" style="margin-top:12px"><i id="bar" style="width:0"></i></div>
+  </section>
+  <section class="steps" id="steps"></section>
+  <section class="panel">
+    <h2>실시간 로그</h2>
+    <div class="log" id="log"></div>
+    <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap"><button class="btn ghost" id="cancel">분석 취소</button><button class="btn ghost" id="notify">완료되면 알림 받기</button></div>
+  </section>
+</main>
+<script src="assets/app.js"></script>
+</body>
+</html>

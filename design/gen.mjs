@@ -44,7 +44,7 @@ const detail = screens.map((s) => `
 <tr><th>화면 목적</th><td colspan="3">${esc(s.purpose)}</td></tr>
 <tr><th>진입 경로</th><td>${esc(s.from)}</td><th>이동 화면</th><td>${esc(s.to)}</td></tr>
 </table>
-<img class="shot" src="design/images/${s.id}.png" alt="${s.id} ${esc(s.name)} 화면 목업" loading="lazy">
+<img class="shot" src="../design/images/${s.id}.png" alt="${s.id} ${esc(s.name)} 화면 목업" loading="lazy">
 <h3>Description</h3>
 <table><tr><th>No</th><th>요소</th><th>유형</th><th>기능 설명</th></tr>
 ${s.items.map((it, i) => `<tr><td><span class="no">${i + 1}</span></td><td>${esc(it[0])}</td><td>${esc(it[1])}</td><td>${esc(it[2])}</td></tr>`).join('\n')}
@@ -55,23 +55,24 @@ const index = `<!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CodeCoach 화면 설계서</title><style>${css}</style></head>
 <body>
-<nav class="toc"><a href="#cover">표지</a><a href="#list">화면 목록</a><a href="#flow">화면 흐름</a>${screens.map((s) => `<a href="#${s.id}">${s.id}</a>`).join('')}<a href="summary.html"><b>핵심 요약</b></a></nav>
+<nav class="toc"><a href="../"><b>← 앱으로</b></a><a href="#cover">표지</a><a href="#list">화면 목록</a><a href="#flow">화면 흐름</a>${screens.map((s) => `<a href="#${s.id}">${s.id}</a>`).join('')}<a href="../summary.html"><b>핵심 요약</b></a></nav>
 <main>
 <section id="cover">
 <h1>CodeCoach 화면 설계서</h1>
 <p class="lead">${esc(product.tagline)}</p>
-<p><a href="summary.html" style="display:inline-block;background:var(--brand);color:#fff;text-decoration:none;padding:10px 18px;border-radius:8px;font-weight:700">이미지로 보는 핵심 요약</a></p>
+<p><a href="../summary.html" style="display:inline-block;background:var(--brand);color:#fff;text-decoration:none;padding:10px 18px;border-radius:8px;font-weight:700">이미지로 보는 핵심 요약</a></p>
 ${meta}
 </section>
 <h2 id="list">화면 목록 (${screens.length})</h2>
-<div class="grid">${screens.map((s) => `<a class="card" href="#${s.id}"><img src="design/images/${s.id}.png" alt="${s.id} 미리보기" loading="lazy"><div><b>${s.id}</b>${esc(s.name)}</div></a>`).join('')}</div>
+<div class="grid">${screens.map((s) => `<a class="card" href="#${s.id}"><img src="../design/images/${s.id}.png" alt="${s.id} 미리보기" loading="lazy"><div><b>${s.id}</b>${esc(s.name)}</div></a>`).join('')}</div>
 ${list}
 <h2 id="flow">화면 흐름</h2>
 ${flow}
 ${detail}
 </main></body></html>
 `;
-fs.writeFileSync('index.html', index);
+fs.mkdirSync('spec', { recursive: true });
+fs.writeFileSync('spec/index.html', index);
 
 // ---------- PDF용 요약 자료 (A4 가로, 한 장에 하나씩) ----------
 const pcss = `
@@ -142,6 +143,6 @@ for (const s of screens) {
 </div></div>
 <div class="foot">CodeCoach 화면 설계서 요약 · ${s.id}</div></section>`);
 }
-const summary = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>CodeCoach 핵심 요약</title><style>${pcss}</style></head><body><nav class="webnav"><a href="index.html">← 화면 설계서</a><a href="CodeCoach-화면설계-요약.pdf">PDF로 받기</a></nav>${pages.join('\n')}</body></html>`;
+const summary = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>CodeCoach 핵심 요약</title><style>${pcss}</style></head><body><nav class="webnav"><a href="index.html">← CodeCoach 앱</a><a href="spec/">화면 설계서</a><a href="CodeCoach-화면설계-요약.pdf">PDF로 받기</a></nav>${pages.join('\n')}</body></html>`;
 fs.writeFileSync('summary.html', summary);
-console.log('generated index.html, summary.html');
+console.log('generated spec/index.html, summary.html');

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CodeCoach · 분석 결과 요약</title>
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body data-page="result">
+<main class="wrap col">
+  <div style="display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap"><div><h1>분석 결과 요약</h1><div class="muted">crawler 모듈 · TypeScript</div></div><button class="btn ghost" id="print">PDF 보고서 받기</button></div>
+  <div id="tabs"></div>
+  <section class="row metrics">
+    <div class="panel metric"><div class="muted">종합 점수</div><div class="v" style="color:var(--brand)">72</div><div class="muted">/ 100</div></div>
+    <a class="panel metric" href="tests.html"><div class="muted">테스트 통과</div><div class="v" style="color:var(--green)" id="m-test">-</div><div class="muted" id="m-test-p"></div></a>
+    <a class="panel metric" href="issues.html"><div class="muted">보완점</div><div class="v" style="color:var(--amber)" id="m-gap">-</div><div class="muted">요구사항 대비</div></a>
+    <a class="panel metric" href="issues.html"><div class="muted">심각한 단점</div><div class="v" style="color:var(--red)" id="m-high">-</div><div class="muted">high 등급</div></a>
+  </section>
+  <section class="row">
+    <div class="panel" style="flex:1.4"><h2>먼저 고치면 좋은 3가지</h2>
+      <table><tr><th>순위</th><th>내용</th><th>분류</th></tr>
+        <tr class="click" onclick="location.href='issues.html'"><td>1</td><td>위험 링크 판정이 아이콘 버튼을 놓침</td><td><span class="chip c-red">단점 high</span></td></tr>
+        <tr class="click" onclick="location.href='tests.html'"><td>2</td><td>쿼리 순서가 달라도 같은 URL로 봐야 함</td><td><span class="chip c-red">테스트 실패</span></td></tr>
+        <tr class="click" onclick="location.href='issues.html'"><td>3</td><td>robots.txt 확인 기능이 없음</td><td><span class="chip c-amber">보완점</span></td></tr>
+      </table></div>
+    <div class="panel" style="flex:1"><h2>영역별 점수</h2>
+      <div style="margin:10px 0">정확성 70<div class="bar"><i style="width:70%"></i></div></div>
+      <div style="margin:10px 0">안정성 62<div class="bar"><i style="width:62%"></i></div></div>
+      <div style="margin:10px 0">보안 80<div class="bar"><i style="width:80%"></i></div></div>
+      <div style="margin:10px 0">유지보수성 76<div class="bar"><i style="width:76%"></i></div></div>
+      <a class="btn" style="width:100%;margin-top:12px" href="coach.html">코칭 받으러 가기</a>
+    </div>
+  </section>
+</main>
+<script src="assets/app.js"></script>
+</body>
+</html>
