@@ -20,7 +20,7 @@ table{width:100%;border-collapse:collapse;margin:8px 0}th,td{border:1px solid va
 .no{display:inline-block;width:22px;height:22px;border-radius:50%;background:var(--red);color:#fff;text-align:center;font:700 12px/22px "Segoe UI",sans-serif}
 .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.flow span{border:1px solid var(--line);background:var(--head);border-radius:8px;padding:6px 12px}.flow i{color:var(--sub);font-style:normal}
 code{font-size:13px}
-@media (max-width:700px){h1{font-size:24px}th,td{padding:6px}}
+@media (max-width:700px){h1{font-size:24px}th,td{padding:6px}table{display:block;overflow-x:auto}.grid{grid-template-columns:1fr}}
 `;
 
 const meta = `
@@ -55,11 +55,12 @@ const index = `<!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CodeCoach 화면 설계서</title><style>${css}</style></head>
 <body>
-<nav class="toc"><a href="#cover">표지</a><a href="#list">화면 목록</a><a href="#flow">화면 흐름</a>${screens.map((s) => `<a href="#${s.id}">${s.id}</a>`).join('')}<a href="CodeCoach-화면설계-요약.pdf">요약 PDF</a></nav>
+<nav class="toc"><a href="#cover">표지</a><a href="#list">화면 목록</a><a href="#flow">화면 흐름</a>${screens.map((s) => `<a href="#${s.id}">${s.id}</a>`).join('')}<a href="summary.html"><b>핵심 요약</b></a></nav>
 <main>
 <section id="cover">
 <h1>CodeCoach 화면 설계서</h1>
 <p class="lead">${esc(product.tagline)}</p>
+<p><a href="summary.html" style="display:inline-block;background:var(--brand);color:#fff;text-decoration:none;padding:10px 18px;border-radius:8px;font-weight:700">이미지로 보는 핵심 요약</a></p>
 ${meta}
 </section>
 <h2 id="list">화면 목록 (${screens.length})</h2>
@@ -93,6 +94,25 @@ h1{font-size:34px;margin:0 0 10px;line-height:1.25}h2{font-size:24px;margin:0 0 
 .feat div{background:#f2f4f7;border-radius:8px;padding:5mm}.feat b{font-size:16px}
 ul{margin:0;padding-left:18px}li{margin:3px 0}
 .items div{display:flex;align-items:flex-start;margin:0 0 7px}
+.webnav{display:none}
+/* 화면(웹)에서는 A4 페이지 대신 반응형 웹페이지로 보여 준다 */
+@media screen{
+  body{background:#fff;font-size:15px}
+  .webnav{display:flex;gap:14px;flex-wrap:wrap;position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid #e3e7ee;padding:10px 16px;font-size:14px}
+  .webnav a{color:#3b5bdb}
+  .page{width:auto;height:auto;max-width:1200px;margin:0 auto;padding:40px 16px;border-bottom:1px solid #e3e7ee;overflow:visible}
+  .page.dark{max-width:none;padding:56px max(16px,calc((100% - 1168px)/2))}
+  .row{flex-wrap:wrap;height:auto!important}
+  .row>div{flex:1 1 280px;min-width:0}
+  .shot{max-width:100%;width:100%!important;height:auto!important}
+  .page.dark .shot{width:min(560px,100%)!important}
+  h1,h2{word-break:keep-all}
+  .foot{display:none}
+  .steps{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+  .feat{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .page:not(.dark) .row>img{flex:1 1 560px;width:auto!important;max-width:720px}
+}
+@media screen and (max-width:700px){h1{font-size:26px}}
 `;
 const easy = product.features.map((f) => `<div><span class="no">${f.n}</span><b>${esc(f.title)}</b><div class="sub" style="margin-top:4px">${esc(f.desc)}</div></div>`).join('');
 const pages = [];
@@ -122,6 +142,6 @@ for (const s of screens) {
 </div></div>
 <div class="foot">CodeCoach 화면 설계서 요약 · ${s.id}</div></section>`);
 }
-const summary = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><title>CodeCoach 화면 설계서 요약</title><style>${pcss}</style></head><body>${pages.join('\n')}</body></html>`;
+const summary = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>CodeCoach 핵심 요약</title><style>${pcss}</style></head><body><nav class="webnav"><a href="index.html">← 화면 설계서</a><a href="CodeCoach-화면설계-요약.pdf">PDF로 받기</a></nav>${pages.join('\n')}</body></html>`;
 fs.writeFileSync('summary.html', summary);
 console.log('generated index.html, summary.html');

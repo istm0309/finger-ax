@@ -1,4 +1,4 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><title>CodeCoach 화면 설계서 요약</title><style>
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>CodeCoach 핵심 요약</title><style>
 @page{size:A4 landscape;margin:0}
 *{box-sizing:border-box}body{margin:0;font:13px/1.55 "Malgun Gothic","Segoe UI",sans-serif;color:#1b2333}
 .page{width:297mm;height:210mm;padding:14mm 16mm;page-break-after:always;position:relative;overflow:hidden}
@@ -18,7 +18,26 @@ h1{font-size:34px;margin:0 0 10px;line-height:1.25}h2{font-size:24px;margin:0 0 
 .feat div{background:#f2f4f7;border-radius:8px;padding:5mm}.feat b{font-size:16px}
 ul{margin:0;padding-left:18px}li{margin:3px 0}
 .items div{display:flex;align-items:flex-start;margin:0 0 7px}
-</style></head><body><section class="page dark">
+.webnav{display:none}
+/* 화면(웹)에서는 A4 페이지 대신 반응형 웹페이지로 보여 준다 */
+@media screen{
+  body{background:#fff;font-size:15px}
+  .webnav{display:flex;gap:14px;flex-wrap:wrap;position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid #e3e7ee;padding:10px 16px;font-size:14px}
+  .webnav a{color:#3b5bdb}
+  .page{width:auto;height:auto;max-width:1200px;margin:0 auto;padding:40px 16px;border-bottom:1px solid #e3e7ee;overflow:visible}
+  .page.dark{max-width:none;padding:56px max(16px,calc((100% - 1168px)/2))}
+  .row{flex-wrap:wrap;height:auto!important}
+  .row>div{flex:1 1 280px;min-width:0}
+  .shot{max-width:100%;width:100%!important;height:auto!important}
+  .page.dark .shot{width:min(560px,100%)!important}
+  h1,h2{word-break:keep-all}
+  .foot{display:none}
+  .steps{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+  .feat{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .page:not(.dark) .row>img{flex:1 1 560px;width:auto!important;max-width:720px}
+}
+@media screen and (max-width:700px){h1{font-size:26px}}
+</style></head><body><nav class="webnav"><a href="index.html">← 화면 설계서</a><a href="CodeCoach-화면설계-요약.pdf">PDF로 받기</a></nav><section class="page dark">
 <div class="row" style="align-items:center;height:100%">
 <div style="flex:1"><div class="kicker">화면 설계서 요약 · v0.1</div><h1>CodeCoach<br>코드를 올리면 AI가 코칭해 주는 웹페이지</h1>
 <p class="sub" style="font-size:15px">개발자가 코드를 올리면 단위 테스트, 보완점, 다른 코드와의 비교, 현재 코드의 단점을 분석하고 고치는 방법까지 코칭해 주는 웹페이지</p><p class="sub" style="margin-top:14mm">인태 · 핑거 교육 실습 · 2026-10-23</p></div>

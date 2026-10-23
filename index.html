@@ -16,14 +16,15 @@ table{width:100%;border-collapse:collapse;margin:8px 0}th,td{border:1px solid va
 .no{display:inline-block;width:22px;height:22px;border-radius:50%;background:var(--red);color:#fff;text-align:center;font:700 12px/22px "Segoe UI",sans-serif}
 .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.flow span{border:1px solid var(--line);background:var(--head);border-radius:8px;padding:6px 12px}.flow i{color:var(--sub);font-style:normal}
 code{font-size:13px}
-@media (max-width:700px){h1{font-size:24px}th,td{padding:6px}}
+@media (max-width:700px){h1{font-size:24px}th,td{padding:6px}table{display:block;overflow-x:auto}.grid{grid-template-columns:1fr}}
 </style></head>
 <body>
-<nav class="toc"><a href="#cover">표지</a><a href="#list">화면 목록</a><a href="#flow">화면 흐름</a><a href="#SCR-01">SCR-01</a><a href="#SCR-02">SCR-02</a><a href="#SCR-03">SCR-03</a><a href="#SCR-04">SCR-04</a><a href="#SCR-05">SCR-05</a><a href="#SCR-06">SCR-06</a><a href="#SCR-07">SCR-07</a><a href="CodeCoach-화면설계-요약.pdf">요약 PDF</a></nav>
+<nav class="toc"><a href="#cover">표지</a><a href="#list">화면 목록</a><a href="#flow">화면 흐름</a><a href="#SCR-01">SCR-01</a><a href="#SCR-02">SCR-02</a><a href="#SCR-03">SCR-03</a><a href="#SCR-04">SCR-04</a><a href="#SCR-05">SCR-05</a><a href="#SCR-06">SCR-06</a><a href="#SCR-07">SCR-07</a><a href="summary.html"><b>핵심 요약</b></a></nav>
 <main>
 <section id="cover">
 <h1>CodeCoach 화면 설계서</h1>
 <p class="lead">개발자가 코드를 올리면 단위 테스트, 보완점, 다른 코드와의 비교, 현재 코드의 단점을 분석하고 고치는 방법까지 코칭해 주는 웹페이지</p>
+<p><a href="summary.html" style="display:inline-block;background:var(--brand);color:#fff;text-decoration:none;padding:10px 18px;border-radius:8px;font-weight:700">이미지로 보는 핵심 요약</a></p>
 
 <table>
 <tr><th>서비스명</th><td>CodeCoach</td><th>문서 버전</th><td>v0.1</td></tr>
